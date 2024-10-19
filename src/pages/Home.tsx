@@ -9,7 +9,14 @@ function Home() {
       <Title />
       <div className="grid grid-cols-3 gap-5">
         <Link to={"Classic-Shop"}>
-          <SectionButton text="Classic Shop" />
+          <SectionButton
+            text="Classic Shop"
+            icon={() => (
+              <span className="material-symbols-outlined absolute text-8xl top-5">
+                store
+              </span>
+            )}
+          />
         </Link>
         <Link to={"Leaderboard"}>
           <SectionButton text="Leaderboard" />

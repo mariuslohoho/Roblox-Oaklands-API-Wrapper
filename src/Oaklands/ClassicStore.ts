@@ -8,20 +8,21 @@ export type ClassicStoreItemsName =
   | "ClassicBillboard"
   | "TeamFlag"
   | "ClassicJeepVehiclePad"
-  | "GiftOfEmotion" //Gift of Universal Surfaces (?)
+  | "GiftOfEmotion"
   | "CannedBeans"
   | "BabyDucky"
   | "ClassicMoai"
   | "RocketLauncher" //Confetti launcher
+  | "Slingshot"
+  | "Oakpiece"
+  | "SubspaceTripmine"
+  | "WitchesBrew"
+  | "StudGift" //Gift of Universal Surfaces
   // Not confirmed names
   | "HealingCoil"
   | "LinkedSword"
-  | "WitchesBrew"
-  | "SubspaceTripmine"
   | "Trowel"
-  | "Slingshot"
   | "StudVinyl"
-  | "TheOakPiece"
   | "TrappedBeans";
 
 export type ClassicStoreAPIResponseBody = {
@@ -186,7 +187,7 @@ export const ClassicShopItems: Partial<{
     },
     Description: "Huh... I wonder if this thing will ever work?",
   },
-  GiftOfEmotion: {
+  StudGift: {
     name: "Gift Of Universal Surfaces",
     ImageUrl: "",
     Cost: {
@@ -196,7 +197,7 @@ export const ClassicShopItems: Partial<{
     Description:
       "Wow, the Universable part of surfaces. Impressive, i love gifts!",
   },
-  TheOakPiece: {
+  Oakpiece: {
     name: "THE OAK PIECE",
     ImageUrl: "",
     Cost: {
