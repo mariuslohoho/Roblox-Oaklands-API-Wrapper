@@ -8,9 +8,9 @@ interface props {
 export default function SectionButton(props: props) {
   return (
     <>
-      <div className="relative cursor-pointer w-40 h-40 rounded-md bg-red-500 flex justify-center items-center">
+      <div className="cell relative cursor-pointer w-40 h-40 rounded-md bg-red-500 flex justify-center items-center">
         {props.icon?.()}
-        <span className="text-xl absolute bottom-5 font-semibold">
+        <span className="text-md sm:text-xl absolute bottom-5 font-semibold">
           {props.text}
         </span>
       </div>

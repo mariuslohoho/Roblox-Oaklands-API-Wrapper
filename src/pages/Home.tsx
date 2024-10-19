@@ -7,8 +7,11 @@ function Home() {
   return (
     <>
       <Title />
-      <div className="grid grid-cols-3 gap-5">
-        <Link to={"Classic-Shop"}>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 justify-center content-center w-fit">
+        <Link
+          to={"Classic-Shop"}
+          className="flex justify-center content-center"
+        >
           <SectionButton
             text="Classic Shop"
             icon={() => (
@@ -18,10 +21,16 @@ function Home() {
             )}
           />
         </Link>
-        <Link to={"Leaderboard"}>
+        <Link
+          to={"Leaderboard"}
+          className="flex justify-center content-center"
+        >
           <SectionButton text="Leaderboard" />
         </Link>
-        <Link to={"Stock-Market"}>
+        <Link
+          to={"Stock-Market"}
+          className="flex justify-center content-center"
+        >
           <SectionButton text="Stock Market" />
         </Link>
       </div>
