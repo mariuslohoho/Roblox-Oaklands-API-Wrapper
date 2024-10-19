@@ -11,7 +11,18 @@ export default {
       extrabold: 175,
       black: 200,
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 0.2s linear",
+        "loading-spin": "spin 1s linear",
+      },
+    },
   },
   plugins: [],
 };

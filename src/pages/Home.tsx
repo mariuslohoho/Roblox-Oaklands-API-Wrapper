@@ -6,8 +6,8 @@ import Title from "../components/Title";
 function Home() {
   return (
     <>
-      <Title />
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 justify-center content-center w-fit">
+      <Title fade_in />
+      <div className="animate-fade-in grid grid-cols-2 sm:grid-cols-3 gap-5 justify-center content-center w-fit">
         <Link
           to={"Classic-Shop"}
           className="flex justify-center content-center"

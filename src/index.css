@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .fade-in-parent > * {
+    @apply animate-fade-in;
+  }
+}
+
+/* default vite styles */
 * {
   font-weight: 100;
 }
