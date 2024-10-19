@@ -11,36 +11,34 @@ import { FormatCurrency } from "../Oaklands/FormatCost";
 
 function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
   return (
-    <table className="animate-fade-in table-auto border-collapse w-[100%]">
-      <thead>
-        <tr>
-          <th className="animate-fade-in border border-slate-400 px-5 py-1 font-bold text-lg">
-            Name
-          </th>
-          <th className="animate-fade-in border border-slate-400 px-5 py-1 font-bold text-lg">
-            Price
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.data.items.map((ItemName) => {
-          const item = ClassicShopItems[ItemName];
-
-          if (!item) return;
-
-          return (
-            <tr className="animate-fade-in">
-              <td className="animate-fade-in border border-slate-400 px-5 py-1">
-                {item.name}
-              </td>
-              <td className="animate-fade-in border border-slate-400 px-5 py-1">
-                {FormatCurrency(item?.Cost)}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="border-2 rounded-xl overflow-hidden border-border">
+      <table className="animate-fade-in table-auto border-collapse w-[100%] *:first:border-none *:border-blue-400 *:border-l-2">
+        <thead className="bg-red-800">
+          <tr>
+            <th className="animate-fade-in px-5 py-1 font-bold text-lg">
+              Name
+            </th>
+            <th className="animate-fade-in px-5 py-1 font-bold text-lg">
+              Price
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.data.items.map((ItemName) => {
+            const item = ClassicShopItems[ItemName];
+            if (!item) return;
+            return (
+              <tr className="animate-fade-in even:bg-slate-500">
+                <td className="animate-fade-in px-5 py-1">{item.name}</td>
+                <td className="animate-fade-in px-5 py-1">
+                  {FormatCurrency(item?.Cost)}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

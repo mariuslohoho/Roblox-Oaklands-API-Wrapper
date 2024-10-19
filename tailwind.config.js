@@ -22,6 +22,10 @@ export default {
         "fade-in": "fade-in 0.2s linear",
         "loading-spin": "spin 1s linear",
       },
+      colors: {
+        primary: "#000000",
+        border: "#ffffff",
+      },
     },
   },
   plugins: [],

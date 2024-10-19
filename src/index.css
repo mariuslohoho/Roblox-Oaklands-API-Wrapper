@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  table > thead > tr > th:not(:first-child),
+  table > tbody > tr > td:not(:first-child) {
+    @apply border-l-2 border-border;
+  }
+}
+
 @layer utilities {
   .fade-in-parent > * {
     @apply animate-fade-in;
