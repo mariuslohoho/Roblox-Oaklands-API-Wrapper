@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import ReturnToHome from "../components/ReturnToHome";
 import Title from "../components/Title";
 import { API_URLS } from "../Oaklands/API_URLS";
 import {
@@ -105,11 +105,7 @@ export default function ClassicShop() {
         )}
         {classicShopDisplayType === "Grid" && null}
       </div>
-      <Link to={"/"}>
-        <footer className="sticky bottom-0 flex justify-center items-center bg-gray-900 py-2 mt-12">
-          <span className="text-center">Back to home</span>
-        </footer>
-      </Link>
+      <ReturnToHome />
     </>
   );
 }
