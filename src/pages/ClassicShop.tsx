@@ -31,8 +31,8 @@ function ClassicShopItemTooltip(props: ClassicShopItemTooltipProps) {
         content-center`}
         style={{
           position: "fixed",
-          left: `${mouseState.x + 15}px`,
-          top: `${mouseState.y + 10}px`,
+          left: `${mouseState.x - window.scrollX + 15}px`,
+          top: `${mouseState.y - window.scrollY + 10}px`,
         }}
       >
         <span className="block">{props.ItemData.name}</span>
@@ -61,6 +61,9 @@ function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
               onMouseEnter={() => setHoveringItemName(ItemName)}
               onMouseLeave={() => setHoveringItemName(null)}
             >
+              <div className="absolute">
+                {/* <img src={ItemData.ImageUrl} /> */}
+              </div>
               <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24">
                 {ItemData?.name}
               </span>
