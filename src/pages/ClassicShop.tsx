@@ -26,7 +26,7 @@ function ClassicShopItemTooltip(props: ClassicShopItemTooltipProps) {
   if (props.visible) {
     return (
       <div
-        className={`z-50 bg-tooltip border-border border-2 rounded-md h-16 w-40 
+        className={`z-50 bg-tooltip border-border border-2 rounded-md h-fit py-2 w-40 
         flex flex-col justify-center
         content-center`}
         style={{
@@ -39,6 +39,11 @@ function ClassicShopItemTooltip(props: ClassicShopItemTooltipProps) {
         <span className="block">
           {FormatCurrency(props.ItemData.Cost)}
         </span>
+        {props.ItemData.Limited && !props.ItemData.Limited?.Obtainable && (
+          <span className="block text-red-700 font-medium text-sm">
+            Unobtainable
+          </span>
+        )}
       </div>
     );
   } else {
@@ -62,7 +67,7 @@ function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
               onMouseLeave={() => setHoveringItemName(null)}
             >
               <div className="absolute">
-                {/* <img src={ItemData.ImageUrl} /> */}
+                <img src={ItemData.ImageUrl} />
               </div>
               <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24">
                 {ItemData?.name}
