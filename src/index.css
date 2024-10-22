@@ -9,9 +9,16 @@
   }
 }
 
+table > thead.thead-shadow {
+  box-shadow: 0px 0px 15px #555555;
+}
+
 @layer utilities {
   .fade-in-parent > * {
     @apply animate-fade-in;
+  }
+  .rounded-thead > thead > tr {
+    @apply *:rounded-tr-lg  first:*:rounded-tl-lg first:*:rounded-tr-none *:rounded-br-lg first:*:rounded-bl-lg first:*:rounded-br-none;
   }
 }
 

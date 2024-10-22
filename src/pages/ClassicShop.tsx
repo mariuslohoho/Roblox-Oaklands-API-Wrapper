@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ActionButton from "../components/ActionButton";
 import Loading from "../components/Loading";
 import ReturnToHome from "../components/ReturnToHome";
 import Title from "../components/Title";
@@ -11,10 +12,10 @@ import { FormatCurrency } from "../Oaklands/FormatCost";
 
 function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
   return (
-    <div className="border-2 rounded-xl overflow-hidden border-border">
-      <table className="animate-fade-in table-auto border-collapse w-[100%] *:first:border-none *:border-blue-400 *:border-l-2">
-        <thead className="bg-red-800">
-          <tr>
+    <div className=" rounded-xl overflow-hidden bg-slate-400 border-2 border-border">
+      <table className="animate-fade-in border-collapse table-auto rounded-thead w-[100%] overflow-hidden">
+        <thead className="relative z-2 thead-shadow">
+          <tr className="*:bg-red-800 *:h-10">
             <th className="animate-fade-in px-5 py-1 font-bold text-lg">
               Name
             </th>
@@ -28,7 +29,7 @@ function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
             const item = ClassicShopItems[ItemName];
             if (!item) return;
             return (
-              <tr className="animate-fade-in even:bg-slate-500">
+              <tr className="animate-fade-in odd:bg-slate-400 even:bg-slate-500">
                 <td className="animate-fade-in px-5 py-1">{item.name}</td>
                 <td className="animate-fade-in px-5 py-1">
                   {FormatCurrency(item?.Cost)}
@@ -89,20 +90,21 @@ export default function ClassicShop() {
               new Date(classicShopData?.reset_time).toLocaleString()}
           </span>
         </div>
-        <div
-          className="flex bg-gray-800 px-3 py-1 mb-2 rounded-md cursor-pointer"
-          onClick={() => setClassicShopDispalyType("Table")}
-        >
-          <span className="material-symbols-outlined">table</span>
-          <span className="font-medium">Table</span>
-        </div>
-        <div
-          className="flex bg-gray-800 px-3 py-1 mb-1 rounded-md cursor-pointer"
-          onClick={() => setClassicShopDispalyType("Grid")}
-        >
-          <span className="material-symbols-outlined">grid_view</span>
-          <span className="font-medium">Grid</span>
-        </div>
+        {/* <ActionButton
+          Text="Refresh"
+          IconName="refresh"
+          onMouseDown={() => {}}
+        /> */}
+        <ActionButton
+          Text="Table"
+          IconName="table"
+          onMouseDown={() => setClassicShopDispalyType("Table")}
+        />
+        <ActionButton
+          Text="Grid"
+          IconName="grid_view"
+          onMouseDown={() => setClassicShopDispalyType("Grid")}
+        />
       </div>
       {classicShopData && classicShopDisplayType === "Table" && (
         <ClassicShopTable data={classicShopData} />
