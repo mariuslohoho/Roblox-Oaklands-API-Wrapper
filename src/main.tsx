@@ -6,6 +6,7 @@ import ClassicShop from "./pages/ClassicShop";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 // import StockMarket from "./pages/StockMarket";
+import SettingsContextProvider from "./contexts/SettingsProvider.tsx";
 
 const router = createHashRouter([
   { path: "/", element: <Home />, errorElement: <ErrorPage /> },
@@ -15,6 +16,8 @@ const router = createHashRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <SettingsContextProvider>
+      <RouterProvider router={router} />
+    </SettingsContextProvider>
   </StrictMode>
 );

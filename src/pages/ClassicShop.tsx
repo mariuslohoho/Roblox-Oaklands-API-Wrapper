@@ -124,7 +124,10 @@ export default function ClassicShop() {
   const [classicShopData, setClassicShopData] =
     useState<ClassicStoreAPIResponseBody | null>(null);
   const [classicShopDisplayType, setClassicShopDispalyType] =
-    useLocalStorage<"Table" | "Grid">("ClassicShopDisplayType", "Table");
+    useLocalStorage<"Table" | "Grid">(
+      "Roblox-Oaklands-API-Wrapper/ClassicShopDisplayType",
+      "Table"
+    );
 
   const FetchShopData = async () => {
     try {

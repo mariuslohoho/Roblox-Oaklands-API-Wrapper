@@ -26,6 +26,7 @@ export default {
         primary: "#000000",
         border: "#ffffff",
         borderDark: "#ededed",
+        oaklandsUIBlack: "rgba(0,0,0,0.93)",
         tooltip: "rgba(43,43,43,0.95)",
       },
     },
