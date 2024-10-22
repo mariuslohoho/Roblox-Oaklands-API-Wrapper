@@ -1,8 +1,8 @@
 import { useLocalStorage, useMouse } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import ActionButton from "../components/ActionButton";
+import Footer from "../components/Footer";
 import Loading from "../components/Loading";
-import ReturnToHome from "../components/ReturnToHome";
 import Title from "../components/Title";
 import { API_URLS } from "../Oaklands/API_URLS";
 import {
@@ -188,7 +188,8 @@ export default function ClassicShop() {
       {classicShopData && classicShopDisplayType === "Grid" && (
         <ClassicShopGrid data={classicShopData} />
       )}
-      <ReturnToHome />
+      <Footer />
+      <div className="mb-20" />
     </>
   );
 }
