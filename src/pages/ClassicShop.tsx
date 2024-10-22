@@ -1,4 +1,4 @@
-import { useMouse } from "@uidotdev/usehooks";
+import { useLocalStorage, useMouse } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import ActionButton from "../components/ActionButton";
 import Loading from "../components/Loading";
@@ -112,9 +112,8 @@ function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
 export default function ClassicShop() {
   const [classicShopData, setClassicShopData] =
     useState<ClassicStoreAPIResponseBody | null>(null);
-  const [classicShopDisplayType, setClassicShopDispalyType] = useState<
-    "Table" | "Grid"
-  >("Table");
+  const [classicShopDisplayType, setClassicShopDispalyType] =
+    useLocalStorage<"Table" | "Grid">("ClassicShopDisplayType", "Table");
 
   const FetchShopData = async () => {
     try {
