@@ -4,3 +4,9 @@ export type CurrencyValue = {
   Currency: Currency;
   Amount: number;
 };
+
+export type LimitedValue = {
+  Limited: boolean;
+  Obtainable: boolean;
+  LastObtainable: string;
+};

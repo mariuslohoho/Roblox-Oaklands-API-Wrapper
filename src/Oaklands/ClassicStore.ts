@@ -1,4 +1,4 @@
-import { CurrencyValue } from "./DataTypes";
+import { CurrencyValue, LimitedValue } from "./DataTypes";
 
 export type ClassicStoreItemsName =
   | "GravityCoil"
@@ -35,6 +35,7 @@ export type ClassicStoreItemsData = {
   ImageUrl: string;
   Cost: CurrencyValue;
   Description: string;
+  Limited?: LimitedValue;
 };
 
 export const ClassicShopItems: Partial<{
@@ -243,5 +244,20 @@ export const ClassicShopItems: Partial<{
     },
     Description:
       "Ooga ooga ooga chaga ooga ooga ooga chaga ooga ooga ooga chaga.. but retro..",
+  },
+  GiftOfEmotion: {
+    name: "Gift of Emotion",
+    ImageUrl: "",
+    Cost: {
+      Currency: "Cash",
+      Amount: 1200,
+    },
+    Description:
+      "Experience a rollercoaster of emotions with this thoughtful gift.",
+    Limited: {
+      Limited: true,
+      Obtainable: false,
+      LastObtainable: "Christmas 2023",
+    },
   },
 };

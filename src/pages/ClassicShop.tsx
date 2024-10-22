@@ -10,6 +10,23 @@ import {
 } from "../Oaklands/ClassicStore";
 import { FormatCurrency } from "../Oaklands/FormatCost";
 
+function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
+  return (
+    <div className="max-w-2xl *:m-2">
+      {props.data.items.map((ItemName) => {
+        const ItemData = ClassicShopItems[ItemName];
+        return (
+          <div className="relative w-28 h-28 border-border border-2 rounded-lg  bg-red-500 inline-block">
+            <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24">
+              {ItemData?.name}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
   return (
     <div className=" rounded-xl overflow-hidden bg-slate-400 border-2 border-border">
@@ -109,7 +126,9 @@ export default function ClassicShop() {
       {classicShopData && classicShopDisplayType === "Table" && (
         <ClassicShopTable data={classicShopData} />
       )}
-      {classicShopDisplayType === "Grid" && null}
+      {classicShopData && classicShopDisplayType === "Grid" && (
+        <ClassicShopGrid data={classicShopData} />
+      )}
       <ReturnToHome />
     </>
   );
