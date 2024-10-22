@@ -18,11 +18,11 @@ export type ClassicStoreItemsName =
   | "SubspaceTripmine"
   | "WitchesBrew"
   | "StudGift" //Gift of Universal Surfaces
-  // Not confirmed names
+  | "VinylStud"
   | "HealingCoil"
   | "LinkedSword"
+  // Not confirmed names
   | "Trowel"
-  | "StudVinyl"
   | "TrappedBeans";
 
 export type ClassicStoreAPIResponseBody = {
@@ -189,7 +189,7 @@ export const ClassicShopItems: Partial<{
     Description:
       "A portal from above sent this mysterious joop down to this store. So powerful, yet so.. weird...",
   },
-  StudVinyl: {
+  VinylStud: {
     name: "Stud Vinyl",
     ImageUrl:
       "https://static.wikia.nocookie.net/oaklands/images/a/a1/Stud_vinyl.png",

@@ -1,3 +1,11 @@
-export type Settings = object;
+export type Settings = {
+  ClassicShop: {
+    TooltipStyle: "Default" | "Custom" | "Oaklands";
+  };
+};
 
-export const DefaultSettings: Settings = {};
+export const DefaultSettings: Partial<Settings> = {
+  ClassicShop: {
+    TooltipStyle: "Default",
+  },
+};

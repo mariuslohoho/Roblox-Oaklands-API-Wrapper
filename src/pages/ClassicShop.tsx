@@ -4,6 +4,7 @@ import ActionButton from "../components/ActionButton";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Title from "../components/Title";
+import UIBase from "../components/UIBase";
 import { API_URLS } from "../Oaklands/API_URLS";
 import {
   ClassicShopItems,
@@ -55,21 +56,22 @@ function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
   const [hoveringItemName, setHoveringItemName] =
     useState<ClassicStoreItemsName | null>(null);
   return (
-    <div className="max-w-2xl *:m-2">
-      {props.data.items.map((ItemName: ClassicStoreItemsName) => {
+    <div className="max-w-2xl *:m-2 fade-in-parent">
+      {props.data.items.map((ItemName: ClassicStoreItemsName, i) => {
         const ItemData = ClassicShopItems[ItemName];
         if (!ItemData) return null;
         return (
-          <div className="relative inline-block">
+          <div className="relative inline-block" key={i}>
             <main
-              className="w-28 h-28 border-border border-2 rounded-lg  bg-red-500"
+              className="w-32 h-32 sm:w-28 sm:h-28 border-border border-2 rounded-lg  bg-red-500"
               onMouseEnter={() => setHoveringItemName(ItemName)}
               onMouseLeave={() => setHoveringItemName(null)}
             >
               <div className="absolute h-full w-full -translate-x-[2px] -translate-y-[2px]">
                 <img
-                  className="h-full w-full object-contain scale-90"
+                  className="h-full w-full object-contain scale-90 select-none"
                   src={ItemData.ImageUrl}
+                  draggable="false"
                 />
               </div>
               <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24 drop-shadow">
@@ -89,7 +91,7 @@ function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
 
 function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
   return (
-    <div className=" rounded-xl overflow-hidden bg-slate-400 border-2 border-border">
+    <div className=" rounded-xl overflow-hidden bg-slate-400 border-2 border-border w-[100%] mt-2">
       <table className="animate-fade-in border-collapse table-auto rounded-thead w-[100%] overflow-hidden">
         <thead className="relative z-2 thead-shadow">
           <tr className="*:bg-red-800 *:h-10">
@@ -102,11 +104,14 @@ function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
           </tr>
         </thead>
         <tbody>
-          {props.data.items.map((ItemName) => {
+          {props.data.items.map((ItemName, i) => {
             const item = ClassicShopItems[ItemName];
             if (!item) return;
             return (
-              <tr className="animate-fade-in odd:bg-slate-400 even:bg-slate-500">
+              <tr
+                key={i}
+                className="animate-fade-in odd:bg-slate-400 even:bg-slate-500"
+              >
                 <td className="animate-fade-in px-5 py-1">{item.name}</td>
                 <td className="animate-fade-in px-5 py-1">
                   {FormatCurrency(item?.Cost)}
@@ -159,31 +164,33 @@ export default function ClassicShop() {
       <div className="animate-fade-in mb-10">
         <span className="font-extrabold text-3xl ">Classic Shop</span>
       </div>
-      <div className="animate-fade-in flex gap-2 justify-end items-center">
-        <div>
-          <span className="inline-block px-0.5">
+      <div className="flex flex-col sm:flex-row justify-center items-center">
+        <UIBase className="flex flex-col md:inline-block m-2">
+          <span className="inline-block select-none">
             Products refreshing on
           </span>
-          <span className="inline-block px-0.5">
+          <span className="inline-block">
             {classicShopData?.reset_time &&
               new Date(classicShopData?.reset_time).toLocaleString()}
           </span>
+        </UIBase>
+        <div className="animate-fade-in inline-flex gap-2 justify-end items-center">
+          <ActionButton
+            Text="Refresh"
+            IconName="refresh"
+            onMouseDown={FetchShopData}
+          />
+          <ActionButton
+            Text="Table"
+            IconName="table"
+            onMouseDown={() => setClassicShopDispalyType("Table")}
+          />
+          <ActionButton
+            Text="Grid"
+            IconName="grid_view"
+            onMouseDown={() => setClassicShopDispalyType("Grid")}
+          />
         </div>
-        <ActionButton
-          Text="Refresh"
-          IconName="refresh"
-          onMouseDown={FetchShopData}
-        />
-        <ActionButton
-          Text="Table"
-          IconName="table"
-          onMouseDown={() => setClassicShopDispalyType("Table")}
-        />
-        <ActionButton
-          Text="Grid"
-          IconName="grid_view"
-          onMouseDown={() => setClassicShopDispalyType("Grid")}
-        />
       </div>
       {classicShopData && classicShopDisplayType === "Table" && (
         <ClassicShopTable data={classicShopData} />
