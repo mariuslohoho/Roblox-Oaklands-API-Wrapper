@@ -7,19 +7,50 @@ import { API_URLS } from "../Oaklands/API_URLS";
 import {
   ClassicShopItems,
   ClassicStoreAPIResponseBody,
+  ClassicStoreItemsData,
+  ClassicStoreItemsName,
 } from "../Oaklands/ClassicStore";
 import { FormatCurrency } from "../Oaklands/FormatCost";
 
+interface ClassicShopItemTooltipProps {
+  ItemData: ClassicStoreItemsData;
+  className?: string;
+  visible?: boolean;
+}
+
+function ClassicShopItemTooltip(props: ClassicShopItemTooltipProps) {
+  return props.visible ? (
+    <div className="z-50 bg-tooltip border-border border-2 rounded-md h-16 w-40 absolute -right-2 translate-x-[100%] top-[50%] -translate-y-[50%] flex flex-col justify-center content-center">
+      <span className="block">{props.ItemData.name}</span>
+      <span className="block">{FormatCurrency(props.ItemData.Cost)}</span>
+    </div>
+  ) : null;
+}
+
 function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
+  const [hoveringItemName, setHoveringItemName] =
+    useState<ClassicStoreItemsName | null>(null);
+
   return (
     <div className="max-w-2xl *:m-2">
-      {props.data.items.map((ItemName) => {
+      {props.data.items.map((ItemName: ClassicStoreItemsName) => {
         const ItemData = ClassicShopItems[ItemName];
+        if (!ItemData) return null;
         return (
-          <div className="relative w-28 h-28 border-border border-2 rounded-lg  bg-red-500 inline-block">
-            <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24">
-              {ItemData?.name}
-            </span>
+          <div className="relative inline-block">
+            <main
+              className="w-28 h-28 border-border border-2 rounded-lg  bg-red-500"
+              onMouseEnter={() => setHoveringItemName(ItemName)}
+              onMouseLeave={() => setHoveringItemName(null)}
+            >
+              <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24">
+                {ItemData?.name}
+              </span>
+            </main>
+            <ClassicShopItemTooltip
+              ItemData={ItemData}
+              visible={hoveringItemName === ItemName}
+            />
           </div>
         );
       })}

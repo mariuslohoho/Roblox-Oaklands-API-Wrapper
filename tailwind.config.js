@@ -25,6 +25,7 @@ export default {
       colors: {
         primary: "#000000",
         border: "#ffffff",
+        tooltip: "rgba(43,43,43,0.95)",
       },
     },
   },
