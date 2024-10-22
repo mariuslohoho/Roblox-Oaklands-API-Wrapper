@@ -1,3 +1,4 @@
+import { useMouse } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import ActionButton from "../components/ActionButton";
 import Loading from "../components/Loading";
@@ -16,21 +17,38 @@ interface ClassicShopItemTooltipProps {
   ItemData: ClassicStoreItemsData;
   className?: string;
   visible?: boolean;
+  mousePosition?: object;
 }
 
 function ClassicShopItemTooltip(props: ClassicShopItemTooltipProps) {
-  return props.visible ? (
-    <div className="z-50 bg-tooltip border-border border-2 rounded-md h-16 w-40 absolute -right-2 translate-x-[100%] top-[50%] -translate-y-[50%] flex flex-col justify-center content-center">
-      <span className="block">{props.ItemData.name}</span>
-      <span className="block">{FormatCurrency(props.ItemData.Cost)}</span>
-    </div>
-  ) : null;
+  const [mouseState] = useMouse();
+
+  if (props.visible) {
+    return (
+      <div
+        className={`z-50 bg-tooltip border-border border-2 rounded-md h-16 w-40 
+        flex flex-col justify-center
+        content-center`}
+        style={{
+          position: "fixed",
+          left: `${mouseState.x + 15}px`,
+          top: `${mouseState.y + 10}px`,
+        }}
+      >
+        <span className="block">{props.ItemData.name}</span>
+        <span className="block">
+          {FormatCurrency(props.ItemData.Cost)}
+        </span>
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
   const [hoveringItemName, setHoveringItemName] =
     useState<ClassicStoreItemsName | null>(null);
-
   return (
     <div className="max-w-2xl *:m-2">
       {props.data.items.map((ItemName: ClassicStoreItemsName) => {
