@@ -10,3 +10,11 @@ export type LimitedValue = {
   Obtainable: boolean;
   LastObtainable: string;
 };
+
+export interface OaklandsItemType {
+  name: string;
+  ImageUrl: string;
+  Cost: CurrencyValue;
+  Description: string;
+  Limited?: LimitedValue;
+}

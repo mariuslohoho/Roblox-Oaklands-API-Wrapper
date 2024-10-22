@@ -1,4 +1,4 @@
-import { CurrencyValue, LimitedValue } from "./DataTypes";
+import { OaklandsItemType } from "./DataTypes.ts";
 
 export type ClassicStoreItemsName =
   | "GravityCoil"
@@ -30,16 +30,8 @@ export type ClassicStoreAPIResponseBody = {
   items: ClassicStoreItemsName[];
 };
 
-export type ClassicStoreItemsData = {
-  name: string;
-  ImageUrl: string;
-  Cost: CurrencyValue;
-  Description: string;
-  Limited?: LimitedValue;
-};
-
 export const ClassicShopItems: Partial<{
-  [item in ClassicStoreItemsName]: ClassicStoreItemsData;
+  [item in ClassicStoreItemsName]: OaklandsItemType;
 }> = {
   GravityCoil: {
     name: "Gravity Coil",

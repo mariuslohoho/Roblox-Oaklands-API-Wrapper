@@ -1,56 +1,18 @@
-import { useLocalStorage, useMouse } from "@uidotdev/usehooks";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import ActionButton from "../components/ActionButton";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Title from "../components/Title";
+import ClassicShopItemTooltip from "../components/Tooltip";
 import UIBase from "../components/UIBase";
 import { API_URLS } from "../Oaklands/API_URLS";
 import {
   ClassicShopItems,
   ClassicStoreAPIResponseBody,
-  ClassicStoreItemsData,
   ClassicStoreItemsName,
 } from "../Oaklands/ClassicStore";
 import { FormatCurrency } from "../Oaklands/FormatCost";
-
-interface ClassicShopItemTooltipProps {
-  ItemData: ClassicStoreItemsData;
-  className?: string;
-  visible?: boolean;
-  mousePosition?: object;
-}
-
-function ClassicShopItemTooltip(props: ClassicShopItemTooltipProps) {
-  const [mouseState] = useMouse();
-
-  if (props.visible) {
-    return (
-      <div
-        className={`z-50 bg-tooltip border-border border-2 rounded-md h-fit py-2 w-40 
-        flex flex-col justify-center
-        content-center`}
-        style={{
-          position: "fixed",
-          left: `${mouseState.x - window.scrollX + 15}px`,
-          top: `${mouseState.y - window.scrollY + 10}px`,
-        }}
-      >
-        <span className="block">{props.ItemData.name}</span>
-        <span className="block">
-          {FormatCurrency(props.ItemData.Cost)}
-        </span>
-        {props.ItemData.Limited && !props.ItemData.Limited?.Obtainable && (
-          <span className="block text-red-700 font-medium text-sm">
-            Unobtainable
-          </span>
-        )}
-      </div>
-    );
-  } else {
-    return null;
-  }
-}
 
 function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
   const [hoveringItemName, setHoveringItemName] =

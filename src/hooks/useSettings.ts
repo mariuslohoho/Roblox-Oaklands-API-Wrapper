@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { Settings } from "../constants/Settings";
 import { SettingsContext } from "../contexts/SettingsProvider";
 
-export function useSettings(): {
+interface useSettingsResult {
   data: Settings;
-  setData: React.Dispatch<React.SetStateAction<object>>;
-} {
+  setData: React.Dispatch<React.SetStateAction<Settings>>;
+  saveData: () => void;
+}
+
+export function useSettings(): useSettingsResult {
   const context = useContext(SettingsContext);
 
   if (context === null) {
@@ -14,8 +17,5 @@ export function useSettings(): {
     );
   }
 
-  return context as {
-    data: Settings;
-    setData: React.Dispatch<React.SetStateAction<object>>;
-  };
+  return context as useSettingsResult;
 }

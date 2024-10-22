@@ -5,6 +5,7 @@ import { ReconcileObjects } from "../util/Reconcile";
 export const SettingsContext = createContext<{
   data: Partial<Settings>;
   setData: React.Dispatch<React.SetStateAction<Partial<Settings> | null>>;
+  saveData: () => void;
 } | null>(null);
 
 interface props {
@@ -12,6 +13,15 @@ interface props {
 }
 export default function SettingsContextProvider(props: props) {
   const [data, setData] = useState<Partial<Settings> | null>(null);
+
+  const saveData = () => {
+    if (data !== null) {
+      window.localStorage.setItem(
+        "Roblox-Oaklands-API-Wrapper/GlobalSettings",
+        JSON.stringify(data)
+      );
+    }
+  };
 
   useEffect(() => {
     const localdata = window.localStorage.getItem(
@@ -43,7 +53,7 @@ export default function SettingsContextProvider(props: props) {
   if (data === null) return;
 
   return (
-    <SettingsContext.Provider value={{ data, setData }}>
+    <SettingsContext.Provider value={{ data, setData, saveData }}>
       {props.children}
     </SettingsContext.Provider>
   );
