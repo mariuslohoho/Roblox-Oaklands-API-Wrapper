@@ -90,11 +90,11 @@ export default function ClassicShop() {
               new Date(classicShopData?.reset_time).toLocaleString()}
           </span>
         </div>
-        {/* <ActionButton
+        <ActionButton
           Text="Refresh"
           IconName="refresh"
-          onMouseDown={() => {}}
-        /> */}
+          onMouseDown={FetchShopData}
+        />
         <ActionButton
           Text="Table"
           IconName="table"
