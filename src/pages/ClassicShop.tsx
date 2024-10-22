@@ -66,10 +66,13 @@ function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
               onMouseEnter={() => setHoveringItemName(ItemName)}
               onMouseLeave={() => setHoveringItemName(null)}
             >
-              <div className="absolute">
-                <img src={ItemData.ImageUrl} />
+              <div className="absolute h-full w-full -translate-x-[2px] -translate-y-[2px]">
+                <img
+                  className="h-full w-full object-contain scale-90"
+                  src={ItemData.ImageUrl}
+                />
               </div>
-              <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24">
+              <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24 drop-shadow">
                 {ItemData?.name}
               </span>
             </main>
