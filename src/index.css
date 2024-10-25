@@ -22,6 +22,20 @@ table > thead.thead-shadow {
   }
 }
 
+@layer components {
+  .TableContainer {
+    @apply border-border border-2 rounded-lg overflow-hidden;
+  }
+
+  .TableContainer table {
+    @apply table-auto border-collapse;
+  }
+
+  .TableContainer th {
+    @apply bg-red-400 p-2;
+  }
+}
+
 /* default vite styles */
 * {
   font-weight: 100;

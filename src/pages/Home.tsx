@@ -22,10 +22,17 @@ function Home() {
           />
         </Link>
         <Link
-          to={"Leaderboard"}
+          to={"leaderboard/TopPlayers"}
           className="flex justify-center content-center"
         >
-          <SectionButton text="Leaderboard" />
+          <SectionButton
+            icon={() => (
+              <span className="material-symbols-outlined absolute text-8xl top-5">
+                social_leaderboard
+              </span>
+            )}
+            text="Top Players"
+          />
         </Link>
         <Link
           to={"Stock-Market"}

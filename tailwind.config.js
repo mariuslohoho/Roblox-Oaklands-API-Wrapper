@@ -20,7 +20,7 @@ export default {
       },
       animation: {
         "fade-in": "fade-in 0.2s linear",
-        "loading-spin": "spin 1s linear",
+        "loading-spin": "spin 1s linear infinite",
       },
       colors: {
         primary: "#000000",
