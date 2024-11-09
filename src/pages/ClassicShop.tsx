@@ -8,45 +8,47 @@ import ClassicShopItemTooltip from "../components/Tooltip";
 import UIBase from "../components/UIBase";
 import { API_URLS } from "../Oaklands/API_URLS";
 import {
-  ClassicShopItems,
   ClassicStoreAPIResponseBody,
-  ClassicStoreItemsName,
+  NewClassicShopAPIResponseItem,
 } from "../Oaklands/ClassicStore";
+import { Currency } from "../Oaklands/DataTypes";
 import { FormatCurrency } from "../Oaklands/FormatCost";
 
 function ClassicShopGrid(props: { data: ClassicStoreAPIResponseBody }) {
-  const [hoveringItemName, setHoveringItemName] =
-    useState<ClassicStoreItemsName | null>(null);
+  const [hoveringItem, setHoveringItem] =
+    useState<NewClassicShopAPIResponseItem | null>(null);
   return (
     <div className="max-w-2xl *:m-2 fade-in-parent">
-      {props.data.items.map((ItemName: ClassicStoreItemsName, i) => {
-        const ItemData = ClassicShopItems[ItemName];
-        if (!ItemData) return null;
-        return (
-          <div className="relative inline-block" key={i}>
-            <main
-              className="w-32 h-32 sm:w-28 sm:h-28 border-border border-2 rounded-lg  bg-red-500"
-              onMouseEnter={() => setHoveringItemName(ItemName)}
-              onMouseLeave={() => setHoveringItemName(null)}
-            >
-              <div className="absolute h-full w-full -translate-x-[2px] -translate-y-[2px]">
-                <img
-                  className="h-full w-full object-contain scale-90 select-none"
-                  src={ItemData.ImageUrl}
-                  draggable="false"
-                />
-              </div>
-              <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24 drop-shadow">
-                {ItemData?.name}
-              </span>
-            </main>
-            <ClassicShopItemTooltip
-              ItemData={ItemData}
-              visible={hoveringItemName === ItemName}
-            />
-          </div>
-        );
-      })}
+      {props.data.shop_items.map(
+        (Item: NewClassicShopAPIResponseItem, i) => {
+          // const ItemData = ClassicShopItems[ItemName];
+          // if (!ItemData) return null;
+          return (
+            <div className="relative inline-block" key={i}>
+              <main
+                className="w-32 h-32 sm:w-28 sm:h-28 border-border border-2 rounded-lg  bg-red-500"
+                onMouseEnter={() => setHoveringItem(Item)}
+                onMouseLeave={() => setHoveringItem(null)}
+              >
+                <div className="absolute h-full w-full -translate-x-[2px] -translate-y-[2px]">
+                  <img
+                    className="h-full w-full object-contain scale-90 select-none"
+                    src={`${API_URLS.base}${Item.image}`}
+                    draggable="false"
+                  />
+                </div>
+                <span className="absolute bottom-2 font-medium -translate-x-[50%] w-24 drop-shadow">
+                  {Item.name}
+                </span>
+              </main>
+              <ClassicShopItemTooltip
+                ItemData={Item}
+                visible={hoveringItem?.identifier === Item.identifier}
+              />
+            </div>
+          );
+        }
+      )}
     </div>
   );
 }
@@ -66,21 +68,28 @@ function ClassicShopTable(props: { data: ClassicStoreAPIResponseBody }) {
           </tr>
         </thead>
         <tbody>
-          {props.data.items.map((ItemName, i) => {
-            const item = ClassicShopItems[ItemName];
-            if (!item) return;
-            return (
-              <tr
-                key={i}
-                className="animate-fade-in odd:bg-slate-400 even:bg-slate-500"
-              >
-                <td className="animate-fade-in px-5 py-1">{item.name}</td>
-                <td className="animate-fade-in px-5 py-1">
-                  {FormatCurrency(item?.Cost)}
-                </td>
-              </tr>
-            );
-          })}
+          {props.data.shop_items.map(
+            (Item: NewClassicShopAPIResponseItem, i) => {
+              // const item = ClassicShopItems[ItemName];
+              // if (!item) return;
+              return (
+                <tr
+                  key={i}
+                  className="animate-fade-in odd:bg-slate-400 even:bg-slate-500"
+                >
+                  <td className="animate-fade-in px-5 py-1">
+                    {Item.name}
+                  </td>
+                  <td className="animate-fade-in px-5 py-1">
+                    {FormatCurrency({
+                      Currency: Item.currency as Currency,
+                      Amount: Item.price,
+                    })}
+                  </td>
+                </tr>
+              );
+            }
+          )}
         </tbody>
       </table>
     </div>

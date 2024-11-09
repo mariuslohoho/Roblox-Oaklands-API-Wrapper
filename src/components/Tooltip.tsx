@@ -1,13 +1,15 @@
 import { useMouse } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import { useSettings } from "../hooks/useSettings";
-import { OaklandsItemType } from "../Oaklands/DataTypes";
+// import { OaklandsItemType } from "../Oaklands/DataTypes";
+import { NewClassicShopAPIResponseItem } from "../Oaklands/ClassicStore";
+import { Currency } from "../Oaklands/DataTypes";
 import { FormatCurrency } from "../Oaklands/FormatCost";
 import ItemInspectionPopup from "./ItemInspection";
 import Keybind from "./Keybind";
 
 interface ClassicShopItemTooltipProps {
-  ItemData: OaklandsItemType;
+  ItemData: NewClassicShopAPIResponseItem;
   className?: string;
   visible?: boolean;
   mousePosition?: object;
@@ -59,13 +61,16 @@ export default function ClassicShopItemTooltip(
       >
         <span className="block">{props.ItemData.name}</span>
         <span className="block">
-          {FormatCurrency(props.ItemData.Cost)}
+          {FormatCurrency({
+            Currency: props.ItemData.currency as Currency,
+            Amount: props.ItemData.price,
+          })}
         </span>
-        {props.ItemData.Limited && !props.ItemData.Limited?.Obtainable && (
-          <span className="block text-red-700 font-medium text-sm">
-            Unobtainable
-          </span>
-        )}
+        {/* {props.ItemData.Limited && !props.ItemData.Limited?.Obtainable && ( */}
+        {/* <span className="block text-red-700 font-medium text-sm"> */}
+        {/* Unobtainable */}
+        {/* </span> */}
+        {/* )} */}
       </div>
     );
   } else if (data.ClassicShop.TooltipStyle === "Oaklands") {

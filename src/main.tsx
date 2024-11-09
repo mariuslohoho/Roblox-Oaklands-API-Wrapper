@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 // import StockMarket from "./pages/StockMarket";
 import SettingsContextProvider from "./contexts/SettingsProvider.tsx";
 import LeaderboardLandingPage from "./pages/leaderboard/LeaderboardLandingPage";
-import TopPlayers from "./pages/leaderboard/TopPlayers.tsx";
+// import TopPlayers from "./pages/leaderboard/TopPlayers.tsx";
 
 const router = createHashRouter([
   { path: "/", element: <Home />, errorElement: <ErrorPage /> },
@@ -17,7 +17,7 @@ const router = createHashRouter([
     path: "/leaderboard",
     element: <LeaderboardLandingPage />,
   },
-  { path: "/leaderboard/TopPlayers", element: <TopPlayers /> },
+  // { path: "/leaderboard/TopPlayers", element: <TopPlayers /> },
   // { path: "/Stock-Market", element: <StockMarket /> },
 ]);
 

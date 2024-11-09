@@ -25,9 +25,20 @@ export type ClassicStoreItemsName =
   | "Trowel"
   | "TrappedBeans";
 
+export type NewClassicShopAPIResponseItem = {
+  name: string;
+  currency: string;
+  price: number;
+  type: string;
+  identifier: string;
+  image?: string;
+  description: string;
+};
+
 export type ClassicStoreAPIResponseBody = {
   reset_time: string;
-  items: ClassicStoreItemsName[];
+  // items: ClassicStoreItemsName[];
+  shop_items: NewClassicShopAPIResponseItem[];
 };
 
 export const ClassicShopItems: Partial<{

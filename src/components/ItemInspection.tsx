@@ -1,8 +1,9 @@
 import React from "react";
-import { OaklandsItemType } from "../Oaklands/DataTypes";
+import { NewClassicShopAPIResponseItem } from "../Oaklands/ClassicStore";
+// import { OaklandsItemType } from "../Oaklands/DataTypes";
 
 interface props {
-  Item: OaklandsItemType;
+  Item: NewClassicShopAPIResponseItem;
   visible?: boolean;
 }
 export default function ItemInspectionPopup(props: props) {
